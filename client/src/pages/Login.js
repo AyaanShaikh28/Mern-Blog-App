@@ -10,13 +10,13 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // State ka initial setup karna
+  
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
   });
 
-  // Input field ka value change hone par state ko update karna
+  
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -24,25 +24,24 @@ const Login = () => {
     }));
   };
 
-  // Form submit hone par server ko request bhejna
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Axios ka upayog karke server par POST request bhejna
+      
       const { data } = await axios.post("/api/v1/user/login", {
         email: inputs.email,
         password: inputs.password,
       });
 
-      // Agar login server dwara successful hota hai
+   
       if (data.success) {
-        // LocalStorage mein user ID store karna
+        
         localStorage.setItem("userId", data?.user._id);
 
-        // Redux store ke auth slice mein login action dispatch karna
+       
         dispatch(authActions.login());
-
-        // Success toast dikhana aur home page par redirect karna
+ 
         toast.success("User Login Successfully");
         navigate("/");
       }
@@ -53,7 +52,7 @@ const Login = () => {
 
   return (
     <>
-      {/* Login form render karna */}
+      
       <form onSubmit={handleSubmit}>
         <Box
           maxWidth={450}
@@ -67,7 +66,7 @@ const Login = () => {
           padding={3}
           borderRadius={5}
         >
-          {/* Form heading render karna */}
+          
           <Typography
             variant="h4"
             sx={{ textTransform: "uppercase" }}
@@ -77,7 +76,7 @@ const Login = () => {
             Login
           </Typography>
 
-          {/* Text input fields render karna */}
+          
           <TextField
             placeholder="email"
             value={inputs.email}
@@ -97,7 +96,7 @@ const Login = () => {
             onChange={handleChange}
           />
 
-          {/* Submit button render karna */}
+          
           <Button
             type="submit"
             sx={{ borderRadius: 3, marginTop: 3 }}
@@ -107,7 +106,7 @@ const Login = () => {
             Submit
           </Button>
 
-          {/* "Not a user? Please Register" message aur Register link render karna */}
+          
           <Button
             onClick={() => navigate("/register")}
             sx={{ borderRadius: 3, marginTop: 3 }}
