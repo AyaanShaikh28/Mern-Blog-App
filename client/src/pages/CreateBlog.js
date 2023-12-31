@@ -5,18 +5,16 @@ import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 import toast from "react-hot-toast";
 
 const CreateBlog = () => {
-  // LocalStorage se user ID retrieve karna
+  
   const id = localStorage.getItem("userId");
   const navigate = useNavigate();
 
-  // State ka initial setup karna, jisme blog ke details store hote hain
   const [inputs, setInputs] = useState({
     title: "",
     description: "",
     image: "",
   });
 
-  // Input field ka value change hone par state ko update karna
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -24,19 +22,18 @@ const CreateBlog = () => {
     }));
   };
 
-  // Form submit hone par server ko request bhejna
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Axios ka upayog karke server par POST request bhejna
+      
       const { data } = await axios.post("/api/v1/blog/create-blog", {
         title: inputs.title,
         description: inputs.description,
         image: inputs.image,
         user: id,
       });
-
-      // Agar blog creation server dwara successful hoti hai, toh success toast dikhana aur user ko "my-blogs" page par redirect karna
+ 
       if (data?.success) {
         toast.success("Blog Created");
         navigate("/my-blogs");
@@ -48,7 +45,7 @@ const CreateBlog = () => {
 
   return (
     <>
-      {/* Blog creation form render karna */}
+      
       <form onSubmit={handleSubmit}>
         <Box
           width={"50%"}
@@ -60,8 +57,7 @@ const CreateBlog = () => {
           display="flex"
           flexDirection={"column"}
           marginTop="30px"
-        >
-          {/* Form heading render karna */}
+        >l
           <Typography
             variant="h2"
             textAlign={"center"}
@@ -72,7 +68,7 @@ const CreateBlog = () => {
             Create A Post
           </Typography>
 
-          {/* Title input field render karna */}
+          
           <InputLabel
             sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" }}
           >
@@ -87,7 +83,7 @@ const CreateBlog = () => {
             required
           />
 
-          {/* Description input field render karna */}
+          
           <InputLabel
             sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" }}
           >
@@ -102,7 +98,7 @@ const CreateBlog = () => {
             required
           />
 
-          {/* Image URL input field render karna */}
+          
           <InputLabel
             sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" }}
           >
@@ -117,7 +113,7 @@ const CreateBlog = () => {
             required
           />
 
-          {/* Submit button render karna */}
+          
           <Button type="submit" color="primary" variant="contained">
             SUBMIT
           </Button>
