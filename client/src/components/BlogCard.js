@@ -1,4 +1,4 @@
-// BlogCard.js file hai jo ek React functional component define karta hai.
+
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-// BlogCard functional component ka export
+
 export default function BlogCard({
   title,
   description,
