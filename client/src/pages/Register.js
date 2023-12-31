@@ -7,14 +7,14 @@ import axios from "axios";
 const Register = () => {
   const navigate = useNavigate();
 
-  // State ka initial setup karna
+  
   const [inputs, setInputs] = useState({
     name: "",
     email: "",
     password: "",
   });
 
-  // Input field ka value change hone par state ko update karna
+  
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -22,18 +22,18 @@ const Register = () => {
     }));
   };
 
-  // Form submit hone par server ko request bhejna
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Axios ka upayog karke server par POST request bhejna
+      
       const { data } = await axios.post("/api/v1/user/register", {
         username: inputs.name,
         email: inputs.email,
         password: inputs.password,
       });
 
-      // Agar registration successful hoti hai toh success toast dikhana aur login page par redirect karna
+      
       if (data.success) {
         toast.success("User Register Successfully");
         navigate("/login");
@@ -45,7 +45,7 @@ const Register = () => {
 
   return (
     <>
-      {/* Registration form render karna */}
+     
       <form onSubmit={handleSubmit}>
         <Box
           maxWidth={450}
@@ -68,7 +68,7 @@ const Register = () => {
             Register
           </Typography>
 
-          {/* Text input fields render karna */}
+          
           <TextField
             placeholder="name"
             value={inputs.name}
@@ -97,7 +97,7 @@ const Register = () => {
             onChange={handleChange}
           />
 
-          {/* Submit button render karna */}
+          
           <Button
             type="submit"
             sx={{ borderRadius: 3, marginTop: 3 }}
@@ -107,7 +107,7 @@ const Register = () => {
             Submit
           </Button>
 
-          {/* Already registered message aur Login link render karna */}
+
           <Button
             onClick={() => navigate("/login")}
             sx={{ borderRadius: 3, marginTop: 3 }}
