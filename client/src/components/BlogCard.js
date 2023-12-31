@@ -26,18 +26,18 @@ export default function BlogCard({
 }) {
   const navigate = useNavigate();
 
-  // Blog edit karne ke liye navigate karna
+  
   const handleEdit = () => {
     navigate(`/blog-details/${id}`);
   };
 
-  // Blog delete karne ke liye axios ka upayog karna
+  
   const handleDelete = async () => {
     try {
       const { data } = await axios.delete(`/api/v1/blog/delete-blog/${id}`);
       if (data?.success) {
         alert("Blog Deleted");
-        window.location.reload(); // Page ko reload karna
+        window.location.reload(); 
       }
     } catch (error) {
       console.log(error);
@@ -45,7 +45,7 @@ export default function BlogCard({
   };
 
   return (
-    // Material-UI Card ka UI render karna
+   
     <Card
       sx={{
         width: "40%",
@@ -58,7 +58,6 @@ export default function BlogCard({
         },
       }}
     >
-      {/* Agar user khudka blog hai toh edit/delete buttons dikhana */}
       {isUser && (
         <Box display={"flex"}>
           <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
@@ -69,7 +68,7 @@ export default function BlogCard({
           </IconButton>
         </Box>
       )}
-      {/* CardHeader me Avatar, username, aur time ka display karna */}
+      
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -79,9 +78,9 @@ export default function BlogCard({
         title={username}
         subheader={time}
       />
-      {/* CardMedia me image display karna */}
+      
       <CardMedia component="img" height="194" image={image} alt="Paella dish" />
-      {/* CardContent me title aur description ka display karna */}
+     
       <CardContent>
         <Typography variant="h6" color="text.secondary">
           Title : {title}
