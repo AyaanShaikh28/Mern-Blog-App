@@ -1,4 +1,4 @@
-// Header.js file hai jo ek React functional component define karta hai.
+l
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -16,22 +16,20 @@ import { authActions } from "../redux/store";
 import toast from "react-hot-toast";
 
 const Header = () => {
-  // Global state ko prapt karna
+ 
   let isLogin = useSelector((state) => state.isLogin);
   isLogin = isLogin || localStorage.getItem("userId");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Local state ka initial state set karna
   const [value, setValue] = useState();
 
-  // Logout ka functionality handle karna
   const handleLogout = () => {
     try {
-      dispatch(authActions.logout()); // Redux action se logout signal bhejna
-      toast.success("Logout Successfully"); // Toast message dikhana
-      navigate("/login"); // React Router se "/login" page par redirect karna
-      localStorage.clear(); // LocalStorage ko clear karna
+      dispatch(authActions.logout()); 
+      toast.success("Logout Successfully"); 
+      navigate("/login"); 
+      localStorage.clear(); 
     } catch (error) {
       console.log(error);
     }
@@ -39,12 +37,12 @@ const Header = () => {
 
   return (
     <>
-      {/* Header ka UI render karna */}
+    
       <AppBar position="sticky">
         <Toolbar>
           <Typography variant="h4">My Blog APP</Typography>
-          {/* Agar user login hai toh navigation tabs dikhana */}
-          {isLogin && (
+  
+         {isLogin && (
             <Box display={"flex"} marginLeft="auto" marginRight={"auto"}>
               <Tabs
                 textColor="inherit"
@@ -61,7 +59,7 @@ const Header = () => {
               </Tabs>
             </Box>
           )}
-          {/* Agar user login nahi hai toh login/register buttons dikhana */}
+
           <Box display={"flex"} marginLeft="auto">
             {!isLogin && (
               <>
@@ -81,8 +79,8 @@ const Header = () => {
                 </Button>
               </>
             )}
-            {/* Agar user login hai toh logout button dikhana */}
-            {isLogin && (
+
+           {isLogin && (
               <Button onClick={handleLogout} sx={{ margin: 1, color: "white" }}>
                 Logout
               </Button>
